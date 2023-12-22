@@ -91,6 +91,5 @@ jobs:
           IMAGE_TAG: ${{ github.sha }}
         run: |
           kustomize edit set image backend=$REGISTRY/$REPOSITORY:$IMAGE_TAG
-          echo "${{ secrets.KUBECONFIG }}" > kubeconfig.yaml
-          kustomize build | kubectl apply -f - --kubeconfig=kubeconfig.yaml
+          kustomize build | kubectl apply -f - 
         working-directory: starter/backend/k8s

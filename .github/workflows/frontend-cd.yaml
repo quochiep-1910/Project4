@@ -62,12 +62,12 @@ jobs:
       - name: Tag Docker Image
         run: |
           cd ./starter/frontend
-          docker tag frontend:latest ${{ vars.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com/frontend:latest
+          docker tag frontend:latest ${{ secrets.AWS_ACCESS_KEY_ID }}.dkr.ecr.us-east-1.amazonaws.com/frontend:latest
 
       - name: Push Docker image to ECR
         run: |
           cd ./starter/frontend
-          docker push ${{ vars.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com/frontend:latest
+          docker push ${{ secrets.AWS_ACCESS_KEY_ID }}.dkr.ecr.us-east-1.amazonaws.com/frontend:latest
       
       - name: Kubeconfig Login
         run: |
@@ -76,7 +76,7 @@ jobs:
       - name: Deploy to Kubernetes
         run: |
           cd ./starter/frontend/k8s
-          kustomize edit set image frontend=${{ vars.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com/frontend:latest
+          kustomize edit set image frontend=${{ secrets.AWS_ACCESS_KEY_ID }}.dkr.ecr.us-east-1.amazonaws.com/frontend:latest
           kustomize build | kubectl apply -f -
 
           

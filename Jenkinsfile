@@ -6,6 +6,7 @@ pipeline {
             steps {
                 script {
                     // Ensure Docker daemon is running and accessible
+                    sh 'whoami'
                     sh 'docker --version'
                 }
             }

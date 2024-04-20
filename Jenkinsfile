@@ -1,6 +1,6 @@
 pipeline {
     agent any
- options {
+    options {
         // Set user to root
         user 'root'
     }

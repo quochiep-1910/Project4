@@ -1,6 +1,9 @@
 pipeline {
     agent any
-
+ options {
+        // Set user to root
+        user 'root'
+    }
     stages {
         stage("Build Docker Image") {
             steps {
